@@ -56,7 +56,7 @@ class _MovieHorizontalListviewState extends State<MovieHorizontalListview> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 350,
+      height: 355,
       child: Column(
         children: [
           if (widget.title != null || widget.subtitle != null)
@@ -136,6 +136,7 @@ class _Slide extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           SizedBox(
             width: 150,
@@ -166,7 +167,7 @@ class _Slide extends StatelessWidget {
             width: 150,
             child: Text(
               movie.title,
-              maxLines: 3,
+              maxLines: 2,
               style: textStyle.titleSmall,
             ),
           ),
@@ -178,6 +179,7 @@ class _Slide extends StatelessWidget {
               ),
               Text(
                 '${movie.voteAverage}',
+                maxLines: 1,
                 style: textStyle.bodyMedium
                     ?.copyWith(color: Colors.yellow.shade800),
               ),
@@ -187,12 +189,10 @@ class _Slide extends StatelessWidget {
               //Text('${movie.popularity}', style: textStyle.bodySmall),
               Text(
                 HumanFormats.number(movie.popularity),
+                maxLines: 1,
                 style: textStyle.bodySmall,
               ),
             ],
-          ),
-          const SizedBox(
-            height: 5,
           ),
         ],
       ),
