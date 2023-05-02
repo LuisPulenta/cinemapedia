@@ -38,6 +38,8 @@ class _HomeViewState extends ConsumerState<_HomeView> {
     super.initState();
     ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
     ref.read(popularMoviesProvider.notifier).loadNextPage();
+    ref.read(upcomingMoviesProvider.notifier).loadNextPage();
+    ref.read(topRatedMoviesProvider.notifier).loadNextPage();
   }
 
 //-------------------------------------------------------
@@ -49,6 +51,8 @@ class _HomeViewState extends ConsumerState<_HomeView> {
 
     final nowPlayingMovies = ref.watch(nowPlayingMoviesProvider);
     final popularMovies = ref.watch(popularMoviesProvider);
+    final topRatedMovies = ref.watch(topRatedMoviesProvider);
+    final upcomingMovies = ref.watch(upcomingMoviesProvider);
 
     if (moviesSlideshow.isEmpty) {
       return const Center(child: CircularProgressIndicator());
@@ -83,6 +87,22 @@ class _HomeViewState extends ConsumerState<_HomeView> {
                 //subtitle: 'Lunes 20',
                 loadNextPage: () {
                   ref.read(popularMoviesProvider.notifier).loadNextPage();
+                },
+              ),
+              MovieHorizontalListview(
+                movies: topRatedMovies,
+                title: 'Mejor calificadas',
+                subtitle: 'Desde siempre',
+                loadNextPage: () {
+                  ref.read(topRatedMoviesProvider.notifier).loadNextPage();
+                },
+              ),
+              MovieHorizontalListview(
+                movies: upcomingMovies,
+                title: 'Próximamente',
+                subtitle: 'Lunes 20',
+                loadNextPage: () {
+                  ref.read(upcomingMoviesProvider.notifier).loadNextPage();
                 },
               ),
 
