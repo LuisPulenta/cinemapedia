@@ -11,7 +11,7 @@ class MovieDetails {
   final String originalTitle;
   final String overview;
   final double popularity;
-  final String posterPath;
+  final String? posterPath;
   final List<ProductionCompany> productionCompanies;
   final List<ProductionCountry> productionCountries;
   final DateTime releaseDate;
@@ -38,7 +38,7 @@ class MovieDetails {
     required this.originalTitle,
     required this.overview,
     required this.popularity,
-    required this.posterPath,
+    this.posterPath,
     required this.productionCompanies,
     required this.productionCountries,
     required this.releaseDate,
