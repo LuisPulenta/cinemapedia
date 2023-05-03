@@ -69,7 +69,7 @@ class MovieScreenState extends ConsumerState<MovieScreen> {
 //------------------------------------------------------------
 class _CustomSliverAppBar extends StatelessWidget {
   final Movie movie;
-  const _CustomSliverAppBar({super.key, required this.movie});
+  const _CustomSliverAppBar({required this.movie});
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +79,7 @@ class _CustomSliverAppBar extends StatelessWidget {
       expandedHeight: size.height * 0.7,
       foregroundColor: Colors.white,
       flexibleSpace: FlexibleSpaceBar(
-        titlePadding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        titlePadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         title: Text(
           movie.title,
           style: const TextStyle(fontSize: 20),
@@ -123,13 +123,12 @@ class _CustomSliverAppBar extends StatelessWidget {
 //------------------------------------------------------------
 class _MovieDetails extends StatelessWidget {
   final Movie movie;
-  const _MovieDetails({super.key, required this.movie});
+  const _MovieDetails({required this.movie});
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final textStyles = Theme.of(context).textTheme;
-    final colors = Theme.of(context).colorScheme;
 
     return Column(
       children: [
