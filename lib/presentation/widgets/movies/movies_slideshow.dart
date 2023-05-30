@@ -11,7 +11,7 @@ class MoviesSlideshow extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
     return SizedBox(
-      height: 210,
+      height: 240,
       width: double.infinity,
       child: Swiper(
           viewportFraction: 0.8,
@@ -40,28 +40,44 @@ class _Slide extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
         boxShadow: const [
           BoxShadow(
-              color: Colors.black45, blurRadius: 10, offset: Offset(0, 10))
+            color: Colors.black45,
+            blurRadius: 10,
+            offset: Offset(0, 10),
+          ),
         ]);
 
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 30),
-      child: DecoratedBox(
-        decoration: decoration,
-        child: ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: Image.network(
-              movie.backdropPath,
-              fit: BoxFit.cover,
-              loadingBuilder: (context, child, loadingProgress) {
-                if (loadingProgress != null) {
-                  return const DecoratedBox(
-                    decoration: BoxDecoration(color: Colors.black12),
-                  );
-                }
-                return FadeIn(child: child);
-              },
-            )),
-      ),
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(bottom: 10),
+          child: DecoratedBox(
+            decoration: decoration,
+            child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: Image.network(
+                  movie.backdropPath,
+                  fit: BoxFit.cover,
+                  loadingBuilder: (context, child, loadingProgress) {
+                    if (loadingProgress != null) {
+                      return const DecoratedBox(
+                        decoration: BoxDecoration(color: Colors.black12),
+                      );
+                    }
+                    return FadeIn(child: child);
+                  },
+                )),
+          ),
+        ),
+        FittedBox(
+          child: Text(
+            movie.title,
+            overflow: TextOverflow.ellipsis,
+            maxLines: 2,
+            style: const TextStyle(
+                color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
+          ),
+        )
+      ],
     );
   }
 }

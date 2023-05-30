@@ -25,7 +25,7 @@ class CustomAppbar extends ConsumerWidget {
                   color: colors.primary,
                 ),
                 const SizedBox(
-                  width: 5,
+                  width: 25,
                 ),
                 Text('Cinemapedia', style: titleStyle),
                 const Spacer(),
