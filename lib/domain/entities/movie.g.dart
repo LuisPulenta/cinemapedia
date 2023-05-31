@@ -86,7 +86,17 @@ const MovieSchema = CollectionSchema(
       id: 13,
       name: r'voteCount',
       type: IsarType.long,
-    )
+    ),
+    r'desde': PropertySchema(
+      id: 14,
+      name: r'desde',
+      type: IsarType.string,
+    ),
+    r'hasta': PropertySchema(
+      id: 15,
+      name: r'hasta',
+      type: IsarType.string,
+    ),
   },
   estimateSize: _movieEstimateSize,
   serialize: _movieSerialize,
@@ -144,6 +154,8 @@ void _movieSerialize(
   writer.writeBool(offsets[11], object.video);
   writer.writeDouble(offsets[12], object.voteAverage);
   writer.writeLong(offsets[13], object.voteCount);
+  writer.writeString(offsets[14], object.desde);
+  writer.writeString(offsets[15], object.hasta);
 }
 
 Movie _movieDeserialize(
@@ -167,6 +179,8 @@ Movie _movieDeserialize(
     video: reader.readBool(offsets[11]),
     voteAverage: reader.readDouble(offsets[12]),
     voteCount: reader.readLong(offsets[13]),
+    desde: reader.readString(offsets[14]),
+    hasta: reader.readString(offsets[15]),
   );
   object.isarId = id;
   return object;

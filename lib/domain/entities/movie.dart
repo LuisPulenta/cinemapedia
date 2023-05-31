@@ -19,6 +19,8 @@ class Movie {
   final bool video;
   final double voteAverage;
   final int voteCount;
+  final String desde;
+  final String hasta;
 
   Movie(
       {required this.adult,
@@ -34,5 +36,7 @@ class Movie {
       required this.title,
       required this.video,
       required this.voteAverage,
-      required this.voteCount});
+      required this.voteCount,
+      required this.desde,
+      required this.hasta});
 }

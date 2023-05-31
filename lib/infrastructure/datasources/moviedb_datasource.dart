@@ -20,9 +20,17 @@ class MoviedbDatasource extends MoviesDatasource {
   List<Movie> _jsonToMovies(Map<String, dynamic> json) {
     final movieDBResponse = MovieDbResponse.fromMap(json);
 
+    String? desde = movieDBResponse.dates?.minimum != null
+        ? movieDBResponse.dates?.minimum.toString()
+        : '';
+
+    String? hasta = movieDBResponse.dates?.maximum != null
+        ? movieDBResponse.dates?.maximum.toString()
+        : '';
+
     final List<Movie> movies = movieDBResponse.results
         .where((moviedb) => moviedb.posterPath != 'no-poster')
-        .map((moviedb) => MovieMapper.movieDBToEntity(moviedb))
+        .map((moviedb) => MovieMapper.movieDBToEntity(moviedb, desde!, hasta!))
         .toList();
     return movies;
   }
@@ -80,7 +88,7 @@ class MoviedbDatasource extends MoviesDatasource {
 
     final movieDetails = MovieDetails.fromMap(response.data);
 
-    final Movie movie = MovieMapper.movieDetailsToEntity(movieDetails);
+    final Movie movie = MovieMapper.movieDetailsToEntity(movieDetails, '', '');
 
     return movie;
   }

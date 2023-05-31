@@ -2,6 +2,7 @@ import 'package:cinemapedia/presentation/providers/providers.dart';
 import 'package:cinemapedia/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 
 class HomeView extends ConsumerStatefulWidget {
   const HomeView({super.key});
@@ -49,6 +50,7 @@ class HomeViewState extends ConsumerState<HomeView> {
       const SliverAppBar(
         floating: true,
         flexibleSpace: FlexibleSpaceBar(
+          centerTitle: true,
           title: CustomAppbar(),
         ),
       ),
@@ -64,7 +66,8 @@ class HomeViewState extends ConsumerState<HomeView> {
               MovieHorizontalListview(
                 movies: nowPlayingMovies,
                 title: 'En cines',
-                subtitle: 'Lunes 20',
+                subtitle:
+                    '${DateFormat('dd/MM/yyyy').format(DateTime.parse(nowPlayingMovies[0].desde))} al ${DateFormat('dd/MM/yyyy').format(DateTime.parse(nowPlayingMovies[0].hasta))}',
                 loadNextPage: () {
                   ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
                 },
@@ -72,7 +75,6 @@ class HomeViewState extends ConsumerState<HomeView> {
               MovieHorizontalListview(
                 movies: popularMovies,
                 title: 'Populares',
-                //subtitle: 'Lunes 20',
                 loadNextPage: () {
                   ref.read(popularMoviesProvider.notifier).loadNextPage();
                 },
@@ -88,7 +90,6 @@ class HomeViewState extends ConsumerState<HomeView> {
               MovieHorizontalListview(
                 movies: upcomingMovies,
                 title: 'Próximamente',
-                subtitle: 'Lunes 20',
                 loadNextPage: () {
                   ref.read(upcomingMoviesProvider.notifier).loadNextPage();
                 },

@@ -60,9 +60,12 @@ class _MovieHorizontalListviewState extends State<MovieHorizontalListview> {
       child: Column(
         children: [
           if (widget.title != null || widget.subtitle != null)
-            _Title(
-              title: widget.title,
-              subtitle: widget.subtitle,
+            Padding(
+              padding: const EdgeInsets.only(bottom: 5),
+              child: _Title(
+                title: widget.title,
+                subtitle: widget.subtitle,
+              ),
             ),
           Expanded(
             child: ListView.builder(
@@ -96,7 +99,10 @@ class _Title extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final titleStyle = Theme.of(context).textTheme.titleLarge;
+    final titleStyle = Theme.of(context)
+        .textTheme
+        .titleLarge!
+        .copyWith(fontWeight: FontWeight.bold);
     return Container(
       padding: const EdgeInsets.only(top: 10),
       margin: const EdgeInsets.symmetric(horizontal: 10),
