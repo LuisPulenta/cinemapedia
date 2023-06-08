@@ -27,76 +27,76 @@ const MovieSchema = CollectionSchema(
       name: r'backdropPath',
       type: IsarType.string,
     ),
-    r'genreIds': PropertySchema(
+    r'desde': PropertySchema(
       id: 2,
+      name: r'desde',
+      type: IsarType.string,
+    ),
+    r'genreIds': PropertySchema(
+      id: 3,
       name: r'genreIds',
       type: IsarType.stringList,
     ),
+    r'hasta': PropertySchema(
+      id: 4,
+      name: r'hasta',
+      type: IsarType.string,
+    ),
     r'id': PropertySchema(
-      id: 3,
+      id: 5,
       name: r'id',
       type: IsarType.long,
     ),
     r'originalLanguage': PropertySchema(
-      id: 4,
+      id: 6,
       name: r'originalLanguage',
       type: IsarType.string,
     ),
     r'originalTitle': PropertySchema(
-      id: 5,
+      id: 7,
       name: r'originalTitle',
       type: IsarType.string,
     ),
     r'overview': PropertySchema(
-      id: 6,
+      id: 8,
       name: r'overview',
       type: IsarType.string,
     ),
     r'popularity': PropertySchema(
-      id: 7,
+      id: 9,
       name: r'popularity',
       type: IsarType.double,
     ),
     r'posterPath': PropertySchema(
-      id: 8,
+      id: 10,
       name: r'posterPath',
       type: IsarType.string,
     ),
     r'releaseDate': PropertySchema(
-      id: 9,
+      id: 11,
       name: r'releaseDate',
       type: IsarType.dateTime,
     ),
     r'title': PropertySchema(
-      id: 10,
+      id: 12,
       name: r'title',
       type: IsarType.string,
     ),
     r'video': PropertySchema(
-      id: 11,
+      id: 13,
       name: r'video',
       type: IsarType.bool,
     ),
     r'voteAverage': PropertySchema(
-      id: 12,
+      id: 14,
       name: r'voteAverage',
       type: IsarType.double,
     ),
     r'voteCount': PropertySchema(
-      id: 13,
+      id: 15,
       name: r'voteCount',
       type: IsarType.long,
-    ),
-    r'desde': PropertySchema(
-      id: 14,
-      name: r'desde',
-      type: IsarType.string,
-    ),
-    r'hasta': PropertySchema(
-      id: 15,
-      name: r'hasta',
-      type: IsarType.string,
-    ),
+    )
   },
   estimateSize: _movieEstimateSize,
   serialize: _movieSerialize,
@@ -119,6 +119,7 @@ int _movieEstimateSize(
 ) {
   var bytesCount = offsets.last;
   bytesCount += 3 + object.backdropPath.length * 3;
+  bytesCount += 3 + object.desde.length * 3;
   bytesCount += 3 + object.genreIds.length * 3;
   {
     for (var i = 0; i < object.genreIds.length; i++) {
@@ -126,6 +127,7 @@ int _movieEstimateSize(
       bytesCount += value.length * 3;
     }
   }
+  bytesCount += 3 + object.hasta.length * 3;
   bytesCount += 3 + object.originalLanguage.length * 3;
   bytesCount += 3 + object.originalTitle.length * 3;
   bytesCount += 3 + object.overview.length * 3;
@@ -142,20 +144,20 @@ void _movieSerialize(
 ) {
   writer.writeBool(offsets[0], object.adult);
   writer.writeString(offsets[1], object.backdropPath);
-  writer.writeStringList(offsets[2], object.genreIds);
-  writer.writeLong(offsets[3], object.id);
-  writer.writeString(offsets[4], object.originalLanguage);
-  writer.writeString(offsets[5], object.originalTitle);
-  writer.writeString(offsets[6], object.overview);
-  writer.writeDouble(offsets[7], object.popularity);
-  writer.writeString(offsets[8], object.posterPath);
-  writer.writeDateTime(offsets[9], object.releaseDate);
-  writer.writeString(offsets[10], object.title);
-  writer.writeBool(offsets[11], object.video);
-  writer.writeDouble(offsets[12], object.voteAverage);
-  writer.writeLong(offsets[13], object.voteCount);
-  writer.writeString(offsets[14], object.desde);
-  writer.writeString(offsets[15], object.hasta);
+  writer.writeString(offsets[2], object.desde);
+  writer.writeStringList(offsets[3], object.genreIds);
+  writer.writeString(offsets[4], object.hasta);
+  writer.writeLong(offsets[5], object.id);
+  writer.writeString(offsets[6], object.originalLanguage);
+  writer.writeString(offsets[7], object.originalTitle);
+  writer.writeString(offsets[8], object.overview);
+  writer.writeDouble(offsets[9], object.popularity);
+  writer.writeString(offsets[10], object.posterPath);
+  writer.writeDateTime(offsets[11], object.releaseDate);
+  writer.writeString(offsets[12], object.title);
+  writer.writeBool(offsets[13], object.video);
+  writer.writeDouble(offsets[14], object.voteAverage);
+  writer.writeLong(offsets[15], object.voteCount);
 }
 
 Movie _movieDeserialize(
@@ -167,20 +169,20 @@ Movie _movieDeserialize(
   final object = Movie(
     adult: reader.readBool(offsets[0]),
     backdropPath: reader.readString(offsets[1]),
-    genreIds: reader.readStringList(offsets[2]) ?? [],
-    id: reader.readLong(offsets[3]),
-    originalLanguage: reader.readString(offsets[4]),
-    originalTitle: reader.readString(offsets[5]),
-    overview: reader.readString(offsets[6]),
-    popularity: reader.readDouble(offsets[7]),
-    posterPath: reader.readString(offsets[8]),
-    releaseDate: reader.readDateTimeOrNull(offsets[9]),
-    title: reader.readString(offsets[10]),
-    video: reader.readBool(offsets[11]),
-    voteAverage: reader.readDouble(offsets[12]),
-    voteCount: reader.readLong(offsets[13]),
-    desde: reader.readString(offsets[14]),
-    hasta: reader.readString(offsets[15]),
+    desde: reader.readString(offsets[2]),
+    genreIds: reader.readStringList(offsets[3]) ?? [],
+    hasta: reader.readString(offsets[4]),
+    id: reader.readLong(offsets[5]),
+    originalLanguage: reader.readString(offsets[6]),
+    originalTitle: reader.readString(offsets[7]),
+    overview: reader.readString(offsets[8]),
+    popularity: reader.readDouble(offsets[9]),
+    posterPath: reader.readString(offsets[10]),
+    releaseDate: reader.readDateTimeOrNull(offsets[11]),
+    title: reader.readString(offsets[12]),
+    video: reader.readBool(offsets[13]),
+    voteAverage: reader.readDouble(offsets[14]),
+    voteCount: reader.readLong(offsets[15]),
   );
   object.isarId = id;
   return object;
@@ -198,28 +200,32 @@ P _movieDeserializeProp<P>(
     case 1:
       return (reader.readString(offset)) as P;
     case 2:
-      return (reader.readStringList(offset) ?? []) as P;
+      return (reader.readString(offset)) as P;
     case 3:
-      return (reader.readLong(offset)) as P;
+      return (reader.readStringList(offset) ?? []) as P;
     case 4:
       return (reader.readString(offset)) as P;
     case 5:
-      return (reader.readString(offset)) as P;
+      return (reader.readLong(offset)) as P;
     case 6:
       return (reader.readString(offset)) as P;
     case 7:
-      return (reader.readDouble(offset)) as P;
+      return (reader.readString(offset)) as P;
     case 8:
       return (reader.readString(offset)) as P;
     case 9:
-      return (reader.readDateTimeOrNull(offset)) as P;
+      return (reader.readDouble(offset)) as P;
     case 10:
       return (reader.readString(offset)) as P;
     case 11:
-      return (reader.readBool(offset)) as P;
+      return (reader.readDateTimeOrNull(offset)) as P;
     case 12:
-      return (reader.readDouble(offset)) as P;
+      return (reader.readString(offset)) as P;
     case 13:
+      return (reader.readBool(offset)) as P;
+    case 14:
+      return (reader.readDouble(offset)) as P;
+    case 15:
       return (reader.readLong(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -453,6 +459,134 @@ extension MovieQueryFilter on QueryBuilder<Movie, Movie, QFilterCondition> {
     });
   }
 
+  QueryBuilder<Movie, Movie, QAfterFilterCondition> desdeEqualTo(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'desde',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Movie, Movie, QAfterFilterCondition> desdeGreaterThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'desde',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Movie, Movie, QAfterFilterCondition> desdeLessThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'desde',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Movie, Movie, QAfterFilterCondition> desdeBetween(
+    String lower,
+    String upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'desde',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Movie, Movie, QAfterFilterCondition> desdeStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'desde',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Movie, Movie, QAfterFilterCondition> desdeEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'desde',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Movie, Movie, QAfterFilterCondition> desdeContains(String value,
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'desde',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Movie, Movie, QAfterFilterCondition> desdeMatches(String pattern,
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'desde',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Movie, Movie, QAfterFilterCondition> desdeIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'desde',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<Movie, Movie, QAfterFilterCondition> desdeIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'desde',
+        value: '',
+      ));
+    });
+  }
+
   QueryBuilder<Movie, Movie, QAfterFilterCondition> genreIdsElementEqualTo(
     String value, {
     bool caseSensitive = true,
@@ -665,6 +799,134 @@ extension MovieQueryFilter on QueryBuilder<Movie, Movie, QFilterCondition> {
         upper,
         includeUpper,
       );
+    });
+  }
+
+  QueryBuilder<Movie, Movie, QAfterFilterCondition> hastaEqualTo(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'hasta',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Movie, Movie, QAfterFilterCondition> hastaGreaterThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'hasta',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Movie, Movie, QAfterFilterCondition> hastaLessThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'hasta',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Movie, Movie, QAfterFilterCondition> hastaBetween(
+    String lower,
+    String upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'hasta',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Movie, Movie, QAfterFilterCondition> hastaStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'hasta',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Movie, Movie, QAfterFilterCondition> hastaEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'hasta',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Movie, Movie, QAfterFilterCondition> hastaContains(String value,
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'hasta',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Movie, Movie, QAfterFilterCondition> hastaMatches(String pattern,
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'hasta',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Movie, Movie, QAfterFilterCondition> hastaIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'hasta',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<Movie, Movie, QAfterFilterCondition> hastaIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'hasta',
+        value: '',
+      ));
     });
   }
 
@@ -1722,6 +1984,30 @@ extension MovieQuerySortBy on QueryBuilder<Movie, Movie, QSortBy> {
     });
   }
 
+  QueryBuilder<Movie, Movie, QAfterSortBy> sortByDesde() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'desde', Sort.asc);
+    });
+  }
+
+  QueryBuilder<Movie, Movie, QAfterSortBy> sortByDesdeDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'desde', Sort.desc);
+    });
+  }
+
+  QueryBuilder<Movie, Movie, QAfterSortBy> sortByHasta() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'hasta', Sort.asc);
+    });
+  }
+
+  QueryBuilder<Movie, Movie, QAfterSortBy> sortByHastaDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'hasta', Sort.desc);
+    });
+  }
+
   QueryBuilder<Movie, Movie, QAfterSortBy> sortById() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'id', Sort.asc);
@@ -1877,6 +2163,30 @@ extension MovieQuerySortThenBy on QueryBuilder<Movie, Movie, QSortThenBy> {
   QueryBuilder<Movie, Movie, QAfterSortBy> thenByBackdropPathDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'backdropPath', Sort.desc);
+    });
+  }
+
+  QueryBuilder<Movie, Movie, QAfterSortBy> thenByDesde() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'desde', Sort.asc);
+    });
+  }
+
+  QueryBuilder<Movie, Movie, QAfterSortBy> thenByDesdeDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'desde', Sort.desc);
+    });
+  }
+
+  QueryBuilder<Movie, Movie, QAfterSortBy> thenByHasta() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'hasta', Sort.asc);
+    });
+  }
+
+  QueryBuilder<Movie, Movie, QAfterSortBy> thenByHastaDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'hasta', Sort.desc);
     });
   }
 
@@ -2039,9 +2349,23 @@ extension MovieQueryWhereDistinct on QueryBuilder<Movie, Movie, QDistinct> {
     });
   }
 
+  QueryBuilder<Movie, Movie, QDistinct> distinctByDesde(
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'desde', caseSensitive: caseSensitive);
+    });
+  }
+
   QueryBuilder<Movie, Movie, QDistinct> distinctByGenreIds() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'genreIds');
+    });
+  }
+
+  QueryBuilder<Movie, Movie, QDistinct> distinctByHasta(
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'hasta', caseSensitive: caseSensitive);
     });
   }
 
@@ -2138,9 +2462,21 @@ extension MovieQueryProperty on QueryBuilder<Movie, Movie, QQueryProperty> {
     });
   }
 
+  QueryBuilder<Movie, String, QQueryOperations> desdeProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'desde');
+    });
+  }
+
   QueryBuilder<Movie, List<String>, QQueryOperations> genreIdsProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'genreIds');
+    });
+  }
+
+  QueryBuilder<Movie, String, QQueryOperations> hastaProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'hasta');
     });
   }
 

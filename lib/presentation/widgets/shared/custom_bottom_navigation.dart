@@ -23,7 +23,7 @@ class CustomBottomNavigation extends StatelessWidget {
 }
 
 //-------------------------------------------------------
-//-------------------------------------------------------
+//---------------------- onItemTapped -------------------
 //-------------------------------------------------------
 
 void onItemTapped(BuildContext context, int index) {

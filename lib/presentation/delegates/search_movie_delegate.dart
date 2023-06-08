@@ -3,6 +3,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:cinemapedia/config/helpers/human_formats.dart';
 import 'package:cinemapedia/domain/entities/movie.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 typedef SearchMoviesCallback = Future<List<Movie>> Function(String query);
 
@@ -65,7 +66,7 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
             } else {
               return FadeIn(
                 animate: query.isNotEmpty,
-                duration: const Duration(milliseconds: 400),
+                duration: const Duration(milliseconds: 200),
                 child: IconButton(
                   icon: const Icon(
                     Icons.cancel,
@@ -152,7 +153,7 @@ class _MovieItem extends StatelessWidget {
         child: Row(
           children: [
             SizedBox(
-              width: size.width * 0.2,
+              width: size.width * 0.25,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: Image.network(
@@ -166,7 +167,7 @@ class _MovieItem extends StatelessWidget {
               width: 10,
             ),
             SizedBox(
-                width: size.width * 0.7,
+                width: size.width * 0.65,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -174,6 +175,17 @@ class _MovieItem extends StatelessWidget {
                       movie.title,
                       style: textStyles.titleMedium,
                     ),
+                    Text(
+                      'Tìtulo original: ${movie.originalTitle}',
+                      style: textStyles.labelMedium,
+                    ),
+                    Text(
+                      movie.releaseDate != null
+                          ? DateFormat('dd/MM/yyyy').format(movie.releaseDate!)
+                          : '',
+                      style: textStyles.labelMedium,
+                    ),
+                    const Divider(),
                     Text(
                       movie.overview,
                       style: textStyles.labelSmall,

@@ -12,11 +12,11 @@ final searchedMoviesProvider =
       ref: ref, searchMovies: movieRepository.searchMovies);
 });
 
-typedef SeacrhMoviesCallback = Future<List<Movie>> Function(String query);
+typedef SearchMoviesCallback = Future<List<Movie>> Function(String query);
 
 class SearcheMoviesNotifier extends StateNotifier<List<Movie>> {
   final Ref ref;
-  SeacrhMoviesCallback searchMovies;
+  SearchMoviesCallback searchMovies;
 
   SearcheMoviesNotifier({required this.ref, required this.searchMovies})
       : super([]);

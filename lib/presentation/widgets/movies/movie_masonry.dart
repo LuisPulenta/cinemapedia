@@ -30,7 +30,6 @@ class _MovieMasonryState extends State<MovieMasonry> {
           scrollController.position.maxScrollExtent) {
         widget.loadNextPage!();
       }
-      ;
     });
   }
 
