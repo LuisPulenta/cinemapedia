@@ -17,6 +17,7 @@ class FavoritesViewState extends ConsumerState<FavoritesView> {
 
   @override
   void initState() {
+    super.initState();
     loadNextPage();
   }
 
