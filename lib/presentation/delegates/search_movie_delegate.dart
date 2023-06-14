@@ -155,11 +155,16 @@ class _MovieItem extends StatelessWidget {
               width: size.width * 0.25,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(10),
-                child: Image.network(
-                  movie.posterPath,
-                  loadingBuilder: (context, child, loadingProgress) =>
-                      FadeIn(child: child),
-                ),
+                child: Image.network(movie.posterPath,
+                    loadingBuilder: (context, child, loadingProgress) =>
+                        //FadeIn(child: child),
+                        FadeInImage(
+                          height: 150,
+                          fit: BoxFit.cover,
+                          image: NetworkImage(movie.posterPath),
+                          placeholder:
+                              const AssetImage('assets/loaders/loading2.gif'),
+                        )),
               ),
             ),
             const SizedBox(
