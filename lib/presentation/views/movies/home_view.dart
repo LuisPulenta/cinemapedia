@@ -35,7 +35,7 @@ class HomeViewState extends ConsumerState<HomeView> {
 
     final moviesSlideshow = ref.watch(moviesSlideshowProvider);
     final nowPlayingMovies = ref.watch(nowPlayingMoviesProvider);
-    final popularMovies = ref.watch(popularMoviesProvider);
+    //final popularMovies = ref.watch(popularMoviesProvider);
     final topRatedMovies = ref.watch(topRatedMoviesProvider);
     final upcomingMovies = ref.watch(upcomingMoviesProvider);
 
@@ -72,11 +72,18 @@ class HomeViewState extends ConsumerState<HomeView> {
                   ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
                 },
               ),
+              // MovieHorizontalListview(
+              //   movies: popularMovies,
+              //   title: 'Populares',
+              //   loadNextPage: () {
+              //     ref.read(popularMoviesProvider.notifier).loadNextPage();
+              //   },
+              // ),
               MovieHorizontalListview(
-                movies: popularMovies,
-                title: 'Populares',
+                movies: upcomingMovies,
+                title: 'Próximamente',
                 loadNextPage: () {
-                  ref.read(popularMoviesProvider.notifier).loadNextPage();
+                  ref.read(upcomingMoviesProvider.notifier).loadNextPage();
                 },
               ),
               MovieHorizontalListview(
@@ -85,13 +92,6 @@ class HomeViewState extends ConsumerState<HomeView> {
                 subtitle: 'Desde siempre',
                 loadNextPage: () {
                   ref.read(topRatedMoviesProvider.notifier).loadNextPage();
-                },
-              ),
-              MovieHorizontalListview(
-                movies: upcomingMovies,
-                title: 'Próximamente',
-                loadNextPage: () {
-                  ref.read(upcomingMoviesProvider.notifier).loadNextPage();
                 },
               ),
 

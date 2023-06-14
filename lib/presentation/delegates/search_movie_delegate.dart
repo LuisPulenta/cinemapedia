@@ -106,7 +106,6 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
         return ListView.builder(
           itemCount: movies.length,
           itemBuilder: (context, index) {
-            final movie = movies[index];
             return _MovieItem(
                 movie: movies[index],
                 onMovieSelected: (context, movie) {
