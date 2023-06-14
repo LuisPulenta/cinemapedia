@@ -77,8 +77,7 @@ class _Slide extends StatelessWidget {
             movie.title,
             overflow: TextOverflow.ellipsis,
             maxLines: 2,
-            style: const TextStyle(
-                color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
         )
       ],
