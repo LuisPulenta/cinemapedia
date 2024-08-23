@@ -21,7 +21,7 @@ class MoviesSlideshow extends StatelessWidget {
           pagination: SwiperPagination(
               margin: const EdgeInsets.only(top: 0),
               builder: DotSwiperPaginationBuilder(
-                  activeColor: colors.primary, color: colors.secondary)),
+                  activeColor: colors.primary, color: colors.inversePrimary)),
           itemCount: movies.length,
           itemBuilder: (context, index) => _Slide(movie: movies[index])),
     );
@@ -41,9 +41,9 @@ class _Slide extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
         boxShadow: const [
           BoxShadow(
-            color: Colors.black45,
-            blurRadius: 10,
-            offset: Offset(0, 10),
+            color: Colors.white38,
+            blurRadius: 5,
+            offset: Offset(5, 5),
           ),
         ]);
 
@@ -62,8 +62,11 @@ class _Slide extends StatelessWidget {
                     fit: BoxFit.cover,
                     loadingBuilder: (context, child, loadingProgress) {
                       if (loadingProgress != null) {
-                        return const DecoratedBox(
-                          decoration: BoxDecoration(color: Colors.black12),
+                        return DecoratedBox(
+                          decoration: BoxDecoration(color: Colors.white60),
+                          child: Container(
+                            height: 180,
+                          ),
                         );
                       }
                       return FadeIn(child: child);
