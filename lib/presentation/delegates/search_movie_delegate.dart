@@ -19,10 +19,12 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
   SearchMovieDelegate(
       {required this.searchMovies, required this.initialMovies});
 
+  //------------------------------------------------------------------------
   void clearStreams() {
     debouncedMovies.close();
   }
 
+  //------------------------------------------------------------------------
   void _onQueryChanged(String query) {
     isLoadingStream.add(true);
     if (_debounceTimer?.isActive ?? false) _debounceTimer!.cancel();
@@ -38,9 +40,11 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
     });
   }
 
+  //------------------------------------------------------------------------
   @override
   String get searchFieldLabel => 'Buscar película...';
 
+  //------------------------------------------------------------------------
   @override
   List<Widget>? buildActions(BuildContext context) {
     return [
@@ -82,6 +86,7 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
     ];
   }
 
+  //------------------------------------------------------------------------
   @override
   Widget? buildLeading(BuildContext context) {
     return IconButton(
@@ -96,6 +101,7 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
     );
   }
 
+  //------------------------------------------------------------------------
   Widget buildResultsAndSuggestions() {
     return StreamBuilder(
       initialData: initialMovies,
@@ -118,11 +124,13 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
     );
   }
 
+  //------------------------------------------------------------------------
   @override
   Widget buildResults(BuildContext context) {
     return buildResultsAndSuggestions();
   }
 
+  //------------------------------------------------------------------------
   @override
   Widget buildSuggestions(BuildContext context) {
     _onQueryChanged(query);
