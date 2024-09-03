@@ -57,12 +57,21 @@ class _HomeScreenState extends State<HomeScreen>
       );
     }
 
+    // return Scaffold(
+    //   body: PageView(
+    //     //* Esto evitará que rebote
+    //     physics: const NeverScrollableScrollPhysics(),
+    //     controller: pageController,
+    //     // index: pageIndex,
+    //     children: viewRoutes,
+    //   ),
+    //   bottomNavigationBar: CustomBottomNavigation(
+    //     currentIndex: widget.pageIndex,
+    //   ),
+    // );
     return Scaffold(
-      body: PageView(
-        //* Esto evitará que rebote
-        physics: const NeverScrollableScrollPhysics(),
-        controller: pageController,
-        // index: pageIndex,
+      body: IndexedStack(
+        index: widget.pageIndex,
         children: viewRoutes,
       ),
       bottomNavigationBar: CustomBottomNavigation(

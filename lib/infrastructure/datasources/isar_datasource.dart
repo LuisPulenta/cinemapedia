@@ -10,6 +10,7 @@ class IsarDatasource extends LocalStorageDatasource {
     db = openDB();
   }
 
+  //-----------------------------------------------------------------------
   Future<Isar> openDB() async {
     final dir = await getApplicationDocumentsDirectory();
     if (Isar.instanceNames.isEmpty) {
@@ -19,6 +20,7 @@ class IsarDatasource extends LocalStorageDatasource {
     return Future.value(Isar.getInstance());
   }
 
+  //-----------------------------------------------------------------------
   @override
   Future<bool> isMovieFavorite(int movieId) async {
     final isar = await db;
@@ -28,12 +30,14 @@ class IsarDatasource extends LocalStorageDatasource {
     return isFavoriteMovie != null;
   }
 
+  //-----------------------------------------------------------------------
   @override
   Future<List<Movie>> loadMovies({int limit = 10, offset = 0}) async {
     final isar = await db;
     return isar.movies.where().offset(offset).limit(limit).findAll();
   }
 
+  //-----------------------------------------------------------------------
   @override
   Future<void> toogleFavorite(Movie movie) async {
     final isar = await db;

@@ -9,6 +9,7 @@ final favoriteMoviesProvider =
   return StorageMoviesNotifier(localStorageRepository: localStorageRepository);
 });
 
+//---------------------------------------------------------------------------
 class StorageMoviesNotifier extends StateNotifier<Map<int, Movie>> {
   int page = 0;
   final LocalStorageRepository localStorageRepository;
@@ -31,6 +32,7 @@ class StorageMoviesNotifier extends StateNotifier<Map<int, Movie>> {
     return movies;
   }
 
+//---------------------------------------------------------------------------
   Future<void> toggleFavorite(Movie movie) async {
     await localStorageRepository.toogleFavorite(movie);
     final bool isMovieInFavorites = state[movie.id] != null;

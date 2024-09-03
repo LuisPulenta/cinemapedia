@@ -425,6 +425,9 @@ class _CustomGradient extends StatelessWidget {
   }
 }
 
+//----------------------------------------------------------
+//------------------ isFavoriteProvider --------------------
+//----------------------------------------------------------
 final isFavoriteProvider =
     FutureProvider.family.autoDispose((ref, int movieId) {
   final localStorageRepository = ref.watch(localStorageRepositoryProvider);

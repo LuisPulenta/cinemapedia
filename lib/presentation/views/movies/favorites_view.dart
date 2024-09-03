@@ -15,12 +15,18 @@ class FavoritesViewState extends ConsumerState<FavoritesView> {
   bool isLastPage = false;
   bool isLoading = false;
 
+//--------------------------------------------------------------
+//------------------------ initState ---------------------------
+//--------------------------------------------------------------
   @override
   void initState() {
     super.initState();
     loadNextPage();
   }
 
+//--------------------------------------------------------------
+//------------------------ Pantalla ----------------------------
+//--------------------------------------------------------------
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;

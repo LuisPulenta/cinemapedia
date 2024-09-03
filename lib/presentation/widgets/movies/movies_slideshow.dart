@@ -63,7 +63,8 @@ class _Slide extends StatelessWidget {
                     loadingBuilder: (context, child, loadingProgress) {
                       if (loadingProgress != null) {
                         return DecoratedBox(
-                          decoration: BoxDecoration(color: Colors.white60),
+                          decoration:
+                              const BoxDecoration(color: Colors.white60),
                           child: Container(
                             height: 180,
                           ),
